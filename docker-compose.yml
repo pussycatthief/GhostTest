@@ -6,6 +6,6 @@ services:
     ports:
       - "2368:2368"
     environment:
-      url: http://152.67.141.197:2368
+      url: http://test.pussycatthief.com:2368
     volumes:
       - /home/ubuntu/ghost/blog:/var/lib/ghost/content
