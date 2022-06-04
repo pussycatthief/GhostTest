@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  ghost-test:
+  ghost:
     image: ghost:alpine
     restart: always
     ports:
@@ -9,3 +9,22 @@ services:
       url: http://test.pussycatthief.com:2368
     volumes:
       - /home/ubuntu/ghost/blog:/var/lib/ghost/content
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    depends_on:
+      - ghost
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./certbot/www:/var/www/certbot/:ro
+
+  certbot:
+    image: certbot/certbot:arm64v8-latest
+    volumes: 
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email me@pussycatthief.com -d test.pussycatthief.com --agree-tos
