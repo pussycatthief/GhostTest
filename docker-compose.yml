@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   ghost:
-    name: ghost
+    container_name: ghost
     image: ghost:alpine
     restart: always
     ports:
@@ -12,7 +12,7 @@ services:
       - /home/ubuntu/ghost/blog:/var/lib/ghost/content
 
   nginx:
-    name: nginx
+    container_name: nginx
     image: nginx:alpine
     restart: always
     depends_on:
@@ -25,7 +25,7 @@ services:
       - ./certbot/www:/var/www/certbot/:ro
 
   certbot:
-    name: certbot
+    container_name: certbot
     image: certbot/certbot:arm64v8-latest
     volumes: 
       - ./certbot/conf:/etc/letsencrypt
