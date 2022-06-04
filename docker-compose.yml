@@ -1,0 +1,11 @@
+version: "3.3"
+services:
+  ghost-test:
+    image: ghost:alpine
+    restart: always
+    ports:
+      - "2368:2368"
+    environment:
+      url: http://152.67.141.197:2368
+    volumes:
+      - /home/ubuntu/ghost/blog:/var/lib/ghost/content
