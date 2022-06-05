@@ -7,7 +7,7 @@ services:
     ports:
       - "2368:2368"
     environment:
-      url: http://test.pussycatthief.com:2368
+      url: http://test.pussycatthief.com
     volumes:
       - /home/ubuntu/ghost/blog:/var/lib/ghost/content
 
